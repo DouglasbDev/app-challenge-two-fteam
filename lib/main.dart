@@ -3,11 +3,11 @@ import 'package:qlorian/qlorian.dart';
 import 'src/views/login_page/login_page.dart';
 
 void main() {
-  runApp(const qlorianApp());
+  runApp(const QlorianApp());
 }
 
-class qlorianApp extends StatelessWidget {
-  const qlorianApp({Key? key}) : super(key: key);
+class QlorianApp extends StatelessWidget {
+  const QlorianApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

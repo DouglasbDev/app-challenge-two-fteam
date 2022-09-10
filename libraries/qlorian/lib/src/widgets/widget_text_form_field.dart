@@ -25,6 +25,7 @@ class WidgetTextFormField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
           isDense: true,
+          contentPadding: EdgeInsets.all(20),
           border: OutlineInputBorder(
             borderSide: const BorderSide(width: 2, color: Color(0xffE7E6F8)),
             borderRadius: BorderRadius.circular(10),

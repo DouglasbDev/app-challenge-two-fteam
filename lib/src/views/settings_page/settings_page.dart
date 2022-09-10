@@ -1,4 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:qlorian/qlorian.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -9,6 +12,20 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  ImageProvider? image;
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      final teste = FileImage(imageTemp);
+      setState(() => this.image = teste);
+    } on PlatformException catch (e) {
+      print('Failed to pick image : $e');
+    }
+  }
+
   final formKey = GlobalKey<FormState>();
   final name = TextEditingController();
   @override
@@ -62,9 +79,25 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 child: Column(
                   children: [
-                    const Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: WidgetCameraButton()),
+                    Padding(
+                      padding: EdgeInsets.only(top: widthSize * 0.0533),
+                      child: image != null
+                          ? SizedBox(
+                              height: widthSize * 0.277,
+                              width: widthSize * 0.277,
+                              child: WidgetImage(
+                                image: image,
+                                onPressed: () {
+                                  pickImage();
+                                },
+                              ),
+                            )
+                          : WidgetCameraButton(
+                              onPressed: () {
+                                pickImage();
+                              },
+                            ),
+                    ),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: widthSize * 0.064),

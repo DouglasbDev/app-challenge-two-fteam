@@ -8,6 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  image_picker: ^0.8.5+3
   flutter:
     sdk: flutter
 

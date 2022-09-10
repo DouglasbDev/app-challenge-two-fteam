@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-class WidgetCameraButton extends StatelessWidget {
-  const WidgetCameraButton({super.key});
+class WidgetCameraButton extends StatefulWidget {
+  final Function()? onPressed;
+  const WidgetCameraButton({super.key, this.onPressed});
 
+  @override
+  State<WidgetCameraButton> createState() => _WidgetCameraButtonState();
+}
+
+class _WidgetCameraButtonState extends State<WidgetCameraButton> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -10,11 +16,15 @@ class WidgetCameraButton extends StatelessWidget {
     double heightSize = size.height;
     return Stack(
       children: [
-        Container(
-          height: widthSize * 0.277,
-          width: widthSize * 0.277,
-          decoration: BoxDecoration(
-              color: Colors.blue, borderRadius: BorderRadius.circular(32)),
+        InkWell(
+          onTap: widget.onPressed,
+          child: Container(
+            height: widthSize * 0.277,
+            width: widthSize * 0.277,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(widthSize * 0.0853)),
+          ),
         ),
         Positioned(
           right: 0,
@@ -25,9 +35,10 @@ class WidgetCameraButton extends StatelessWidget {
             alignment: Alignment.center,
             decoration: const BoxDecoration(
                 color: Color(0XFFB4AFEB), shape: BoxShape.circle),
-            child: const Icon(
+            child: Icon(
               Icons.camera_alt,
               color: Colors.white,
+              size: widthSize * 0.0426,
             ),
           ),
         )

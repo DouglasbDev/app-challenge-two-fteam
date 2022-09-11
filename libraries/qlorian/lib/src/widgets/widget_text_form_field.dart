@@ -24,38 +24,27 @@ class WidgetTextFormField extends StatelessWidget {
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
-          isDense: true,
-          contentPadding: EdgeInsets.all(20),
-          border: OutlineInputBorder(
-            borderSide: const BorderSide(width: 2, color: Color(0xffE7E6F8)),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 2,
-              color: Color(0xffE7E6F8),
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 2,
-              color: Color(0xffE7E6F8),
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          prefixIcon: Icon(
-            prefix,
-            size: 24,
-            color: const Color(0xffB4AFEB),
-          ),
-          suffixIcon: Icon(
-            suffixIcon,
-            size: 24,
-            color: Colors.grey,
-          ),
-          hintText: hintText,
-          hintStyle: const TextStyle(fontSize: 14, color: Color(0xffC0C0C0))),
+        isDense: true,
+        contentPadding: EdgeInsets.only(
+          left: widthSize * 0.048,
+          top: widthSize * 0.0426,
+          bottom: widthSize * 0.0426,
+        ),
+        prefixIcon: Icon(
+          prefix,
+          size: widthSize * 0.064,
+          color: const Color(0xffB4AFEB),
+        ),
+        suffixIcon: Icon(
+          suffixIcon,
+          size: widthSize * 0.064,
+          color: Colors.grey,
+        ),
+        hintText: hintText,
+        hintStyle: const TextStyle(
+          fontSize: 14,
+        ),
+      ),
     );
   }
 }

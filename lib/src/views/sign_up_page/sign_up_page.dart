@@ -18,11 +18,7 @@ class _SignUpPageState extends State<SignUpPage> {
     double widthSize = size.width;
     double heightSize = size.height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        foregroundColor: const Color(0XFF3E3E3F),
-      ),
+      appBar: AppBar(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(

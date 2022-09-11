@@ -34,11 +34,7 @@ class _SettingsPageState extends State<SettingsPage> {
     double widthSize = size.width;
     double heightSize = size.height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        foregroundColor: const Color(0XFF3E3E3F),
-      ),
+      appBar: AppBar(),
       body: Form(
         key: formKey,
         child: SingleChildScrollView(

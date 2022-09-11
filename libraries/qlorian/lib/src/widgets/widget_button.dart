@@ -16,7 +16,7 @@ class _WidgetButtonState extends State<WidgetButton> {
     double widthSize = size.width;
     double heightSize = size.height;
     return Material(
-      color: const Color(0xff918AE2),
+      color: Theme.of(context).colorScheme.primary,
       borderRadius: BorderRadius.circular(widthSize * 0.0373),
       child: InkWell(
         borderRadius: BorderRadius.circular(widthSize * 0.0373),

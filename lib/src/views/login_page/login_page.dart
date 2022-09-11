@@ -20,10 +20,7 @@ class _LoginPageState extends State<LoginPage> {
     double heightSize = size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
+      appBar: AppBar(),
       body: Form(
         key: formKey,
         child: SingleChildScrollView(

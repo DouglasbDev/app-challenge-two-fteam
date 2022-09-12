@@ -11,7 +11,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
+  var passwordCache = '';
+  var passwordCacheConfirm = '';
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -20,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Form(
-        key: _formKey,
+        key: formKey,
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
@@ -75,14 +77,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 SizedBox(height: widthSize * 0.064),
                 WidgetTextFormField(
-                  prefix: Icons.person,
-                  hintText: 'Douglas Oliveira',
-                  // validator: (text) {
-                  //   if (text == null || text.isEmpty) {
-                  //     return 'This field is required';
-                  //   }
-                  // }
-                ),
+                    prefix: Icons.person,
+                    hintText: 'Douglas Oliveira',
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'This field is required';
+                      }
+                      if (text.length < 5) {
+                        return 'The name is too short';
+                      }
+                    }),
                 SizedBox(height: widthSize * 0.074),
                 const Text(
                   'E-mail',
@@ -106,11 +110,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 WidgetTextFormField(
                   prefix: Icons.lock,
                   hintText: 'Password',
-                  // validator: (text) {
-                  //   if (text == null || text.isEmpty) {
-                  //     return 'This field is required';
-                  //   }
-                  // }
+                  onChanged: (text) => passwordCache = text,
+                  obscureText: true,
+                  validator: (text) {
+                    if (text == null || text.isEmpty) {
+                      return 'This field is required';
+                    }
+                    if (passwordCacheConfirm != passwordCache) {
+                      return 'The password is not the same';
+                    }
+                  },
                 ),
                 SizedBox(height: widthSize * 0.074),
                 const Text(
@@ -121,11 +130,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 WidgetTextFormField(
                   prefix: Icons.lock,
                   hintText: 'Confirm Password',
-                  // validator: (text) {
-                  //   if (text == null || text.isEmpty) {
-                  //     return 'This field is required';
-                  //   }
-                  // }
+                  onChanged: (text) => passwordCacheConfirm = text,
+                  obscureText: true,
+                  validator: (text) {
+                    if (text == null || text.isEmpty) {
+                      return 'This field is required';
+                    }
+                    if (passwordCacheConfirm != passwordCache) {
+                      return 'The password is not the same';
+                    }
+                  },
                 ),
                 SizedBox(height: widthSize * 0.256),
                 WidgetButton(
@@ -137,12 +151,13 @@ class _SignUpPageState extends State<SignUpPage> {
                           fontWeight: FontWeight.w600),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SettingsPage()),
-                      );
-                      // if (formKey.currentState!.validate());
+                      if (formKey.currentState!.validate()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SettingsPage()),
+                        );
+                      }
                     }),
                 SizedBox(height: widthSize * 0.08),
               ],

@@ -13,7 +13,7 @@ class QlorianApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'qlorian',
+      title: 'Qlorian',
       theme: themeLight,
       home: const LoginPage(),
     );

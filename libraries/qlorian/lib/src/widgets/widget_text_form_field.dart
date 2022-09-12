@@ -4,8 +4,10 @@ class WidgetTextFormField extends StatelessWidget {
   final IconData? prefix;
   final IconData? suffixIcon;
   final String? hintText;
+  final bool obscureText;
   final TextEditingController? controller;
   final String? Function(String? text)? validator;
+  final String? Function(String text)? onChanged;
   const WidgetTextFormField({
     super.key,
     this.prefix,
@@ -13,6 +15,8 @@ class WidgetTextFormField extends StatelessWidget {
     this.controller,
     this.suffixIcon,
     this.validator,
+    this.onChanged,
+    this.obscureText = false,
   });
 
   @override
@@ -21,6 +25,9 @@ class WidgetTextFormField extends StatelessWidget {
     double widthSize = size.width;
     double heightSize = size.height;
     return TextFormField(
+      obscureText: obscureText,
+      onChanged: onChanged,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       controller: controller,
       decoration: InputDecoration(

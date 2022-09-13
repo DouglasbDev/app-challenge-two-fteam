@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:app_challenge_two_fteam/src/views/login_page/login_page.dart';
 import 'package:app_challenge_two_fteam/src/views/settings_page/settings_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:qlorian/qlorian.dart';
 
@@ -14,6 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>();
   var passwordCache = '';
   var passwordCacheConfirm = '';
+  bool obscuredTextPassword = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -42,33 +46,30 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ),
                 SizedBox(height: widthSize * 0.0693),
-                Row(
-                  children: [
-                    const Text(
-                      'if you have an account/',
-                      style: TextStyle(fontSize: 16, color: Color(0xffC4C4C4)),
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      const TextSpan(
+                          text: 'if you have an account/',
+                          style: TextStyle(
+                              fontSize: 16, color: Color(0xffC4C4C4))),
+                      TextSpan(
+                        text: 'Login',
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xffB9B9B9)),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                            );
+                          },
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()),
-                        );
-                      },
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: Color(0xffB9B9B9),
-                        ),
-                      ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
                 SizedBox(height: widthSize * 0.170),
                 const Text(
@@ -111,7 +112,16 @@ class _SignUpPageState extends State<SignUpPage> {
                   prefix: Icons.lock,
                   hintText: 'Password',
                   onChanged: (text) => passwordCache = text,
-                  obscureText: true,
+                  obscureText: obscuredTextPassword,
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscuredTextPassword = !obscuredTextPassword;
+                        });
+                      },
+                      icon: Icon(obscuredTextPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility)),
                   validator: (text) {
                     if (text == null || text.isEmpty) {
                       return 'This field is required';
@@ -131,7 +141,16 @@ class _SignUpPageState extends State<SignUpPage> {
                   prefix: Icons.lock,
                   hintText: 'Confirm Password',
                   onChanged: (text) => passwordCacheConfirm = text,
-                  obscureText: true,
+                  obscureText: obscuredTextPassword,
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscuredTextPassword = !obscuredTextPassword;
+                        });
+                      },
+                      icon: Icon(obscuredTextPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility)),
                   validator: (text) {
                     if (text == null || text.isEmpty) {
                       return 'This field is required';

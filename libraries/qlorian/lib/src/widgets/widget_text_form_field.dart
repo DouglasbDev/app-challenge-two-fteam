@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class WidgetTextFormField extends StatelessWidget {
   final IconData? prefix;
-  final IconData? suffixIcon;
+  final Widget? suffixIcon;
   final String? hintText;
   final bool obscureText;
+  final List<TextInputFormatter>? inputFormatters;
   final TextEditingController? controller;
   final String? Function(String? text)? validator;
   final String? Function(String text)? onChanged;
@@ -17,6 +19,7 @@ class WidgetTextFormField extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.obscureText = false,
+    this.inputFormatters,
   });
 
   @override
@@ -25,6 +28,7 @@ class WidgetTextFormField extends StatelessWidget {
     double widthSize = size.width;
     double heightSize = size.height;
     return TextFormField(
+      inputFormatters: inputFormatters,
       obscureText: obscureText,
       onChanged: onChanged,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -42,11 +46,7 @@ class WidgetTextFormField extends StatelessWidget {
           size: widthSize * 0.064,
           color: const Color(0xffB4AFEB),
         ),
-        suffixIcon: Icon(
-          suffixIcon,
-          size: widthSize * 0.064,
-          color: Colors.grey,
-        ),
+        suffixIcon: suffixIcon,
         hintText: hintText,
         hintStyle: const TextStyle(
           fontSize: 14,

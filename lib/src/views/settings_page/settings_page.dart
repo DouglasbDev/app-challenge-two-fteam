@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qlorian/qlorian.dart';
 
+import '../../model/cpf.dart';
+
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
@@ -129,7 +131,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                 fontSize: 14, fontWeight: FontWeight.w600),
                           ),
                           SizedBox(height: widthSize * 0.064),
-                          const WidgetTextFormField(
+                          WidgetTextFormField(
+                            inputFormatters: [CpfMask()],
                             prefix: Icons.person,
                             hintText: '000.000.000-00/00.000.000/0001-00.',
                           ),

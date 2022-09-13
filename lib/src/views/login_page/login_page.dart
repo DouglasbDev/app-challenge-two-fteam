@@ -1,4 +1,5 @@
 import 'package:app_challenge_two_fteam/src/views/sign_up_page/sign_up_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:qlorian/qlorian.dart';
 
@@ -13,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
+  bool obscuredTextPassword = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -45,32 +47,30 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: widthSize * 0.0693,
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      'if you new here/',
-                      style: TextStyle(fontSize: 16, color: Color(0xffC4C4C4)),
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUpPage()),
-                        );
-                      },
-                      child: const Text(
-                        'Create account',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      const TextSpan(
+                          text: 'if you new here/',
+                          style: TextStyle(
+                              fontSize: 16, color: Color(0xffC4C4C4))),
+                      TextSpan(
+                        text: 'Create account',
+                        style: const TextStyle(
                             fontSize: 16,
+                            fontWeight: FontWeight.w600,
                             color: Color(0xffB9B9B9)),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignUpPage()),
+                            );
+                          },
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: widthSize * 0.170,
@@ -95,7 +95,11 @@ class _LoginPageState extends State<LoginPage> {
                 WidgetTextFormField(
                   prefix: Icons.lock,
                   hintText: 'Douglas@gmail.com',
-                  suffixIcon: Icons.remove_red_eye_sharp,
+                  suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: Icon(obscuredTextPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility)),
                   controller: password,
                 ),
                 Row(

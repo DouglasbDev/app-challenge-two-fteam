@@ -19,6 +19,12 @@ class _LoginPageState extends State<LoginPage> {
   bool obscuredTextPassword = false;
   @override
   Widget build(BuildContext context) {
+    final headline1 = Theme.of(context).textTheme.headline1;
+    final headline2 = Theme.of(context).textTheme.headline2;
+    final headline3 = Theme.of(context).textTheme.headline3;
+    final headline4 = Theme.of(context).textTheme.headline4;
+    final headline5 = Theme.of(context).textTheme.headline5;
+    final headline6 = Theme.of(context).textTheme.headline6;
     final colorSurface = Theme.of(context).colorScheme.surface;
     final size = MediaQuery.of(context).size;
     double widthSize = size.width;
@@ -36,9 +42,9 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   '👋 Hello,\n Login now',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: headline1,
                 ),
                 SizedBox(
                   height: widthSize * 0.0693,
@@ -46,16 +52,13 @@ class _LoginPageState extends State<LoginPage> {
                 Text.rich(
                   TextSpan(
                     children: [
-                      const TextSpan(
-                          text: 'if you new here/',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xffC4C4C4))),
+                      TextSpan(
+                        text: 'if you new here/',
+                        style: headline2,
+                      ),
                       TextSpan(
                         text: 'Create account',
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xffB9B9B9)),
+                        style: headline3,
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.push(
@@ -71,17 +74,13 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-          SizedBox(
-            height: widthSize * 0.170,
-          ),
+          SizedBox(height: widthSize * 0.08),
           Container(
             padding: EdgeInsets.only(
               left: widthSize * 0.064,
               right: widthSize * 0.064,
               top: widthSize * 0.064,
             ),
-            height: heightSize,
-            width: widthSize,
             decoration: BoxDecoration(
               color: colorSurface,
               borderRadius: BorderRadius.only(
@@ -94,9 +93,9 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'E-mail',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetTextFormField(
@@ -112,9 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       }),
                   SizedBox(height: widthSize * 0.074),
-                  const Text('Password',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  Text('Password', style: headline4),
                   SizedBox(
                     height: widthSize * 0.064,
                   ),
@@ -160,10 +157,9 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           child: TextButton(
                             onPressed: () {},
-                            child: const Text(
+                            child: Text(
                               'Forgot password?',
-                              style: TextStyle(
-                                  fontSize: 12, color: Color(0xffC4C4C4)),
+                              style: headline6,
                             ),
                           )),
                     ],
@@ -177,13 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                           formKey.currentState!.save();
                         }
                       },
-                      title: const Text(
-                        'Login',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600),
-                      ),
+                      title: Text('Login', style: headline5),
                     ),
                   ),
                 ],

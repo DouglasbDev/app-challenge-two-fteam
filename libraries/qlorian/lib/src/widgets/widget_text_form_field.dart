@@ -24,6 +24,7 @@ class WidgetTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final headline6 = Theme.of(context).textTheme.headline6;
     final size = MediaQuery.of(context).size;
     double widthSize = size.width;
     double heightSize = size.height;
@@ -35,23 +36,20 @@ class WidgetTextFormField extends StatelessWidget {
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
-        // isDense: true,
-        // contentPadding: EdgeInsets.only(
-        //   left: widthSize * 0.048,
-        //   top: widthSize * 0.0426,
-        //   bottom: widthSize * 0.0426,
-        // ),
-        prefixIcon: Icon(
-          prefix,
-          size: widthSize * 0.064,
-          color: const Color(0xffB4AFEB),
-        ),
-        suffixIcon: suffixIcon,
-        hintText: hintText,
-        hintStyle: const TextStyle(
-          fontSize: 14,
-        ),
-      ),
+          // isDense: true,
+          // contentPadding: EdgeInsets.only(
+          //   left: widthSize * 0.048,
+          //   top: widthSize * 0.0426,
+          //   bottom: widthSize * 0.0426,
+          // ),
+          prefixIcon: Icon(
+            prefix,
+            size: widthSize * 0.064,
+            color: const Color(0xffB4AFEB),
+          ),
+          suffixIcon: suffixIcon,
+          hintText: hintText,
+          hintStyle: headline6),
     );
   }
 }

@@ -20,6 +20,11 @@ class _SignUpPageState extends State<SignUpPage> {
   bool obscuredTextPassword = false;
   @override
   Widget build(BuildContext context) {
+    final headline1 = Theme.of(context).textTheme.headline1;
+    final headline2 = Theme.of(context).textTheme.headline2;
+    final headline3 = Theme.of(context).textTheme.headline3;
+    final headline4 = Theme.of(context).textTheme.headline4;
+    final headline5 = Theme.of(context).textTheme.headline5;
     final colorSurface = Theme.of(context).colorScheme.surface;
     final size = MediaQuery.of(context).size;
     double widthSize = size.width;
@@ -36,24 +41,19 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   '👋 Hello,\n Are you new here',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: headline1,
                 ),
                 SizedBox(height: widthSize * 0.0693),
                 Text.rich(
                   TextSpan(
                     children: [
-                      const TextSpan(
-                          text: 'if you have an account/',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xffC4C4C4))),
+                      TextSpan(
+                          text: 'if you have an account/', style: headline2),
                       TextSpan(
                         text: 'Login',
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xffB9B9B9)),
+                        style: headline3,
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.push(
@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ],
             ),
           ),
-          SizedBox(height: widthSize * 0.170),
+          SizedBox(height: widthSize * 0.08),
           Container(
             padding: EdgeInsets.only(
               left: widthSize * 0.064,
@@ -88,9 +88,9 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Full Name',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetTextFormField(
@@ -109,9 +109,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       }),
                   SizedBox(height: widthSize * 0.074),
-                  const Text(
+                  Text(
                     'E-mail',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetTextFormField(
@@ -127,9 +127,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       }),
                   SizedBox(height: widthSize * 0.074),
-                  const Text(
+                  Text(
                     'Password',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetTextFormField(
@@ -156,9 +156,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                   SizedBox(height: widthSize * 0.074),
-                  const Text(
+                  Text(
                     'Confirm Password',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetTextFormField(
@@ -188,13 +188,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: EdgeInsets.only(
                         top: widthSize * 0.229, bottom: widthSize * 0.0373),
                     child: WidgetButton(
-                        title: const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600),
-                        ),
+                        title: Text('Sign Up', style: headline5),
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             Navigator.push(

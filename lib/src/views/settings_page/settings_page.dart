@@ -45,6 +45,46 @@ class _SettingsPageState extends State<SettingsPage> {
         });
       }
     });
+    phone.addListener(() {
+      if (phone.text.startsWith('+55')) {
+        setState(() {
+          controller.selectedCountry = controller.items
+              .firstWhere((element) => element.title == 'Brazil');
+        });
+      }
+    });
+    phone.addListener(() {
+      if (phone.text.startsWith('+49')) {
+        setState(() {
+          controller.selectedCountry = controller.items
+              .firstWhere((element) => element.title == 'Germany');
+        });
+      }
+    });
+    phone.addListener(() {
+      if (phone.text.startsWith('+44')) {
+        setState(() {
+          controller.selectedCountry = controller.items
+              .firstWhere((element) => element.title == 'United Kingdom');
+        });
+      }
+    });
+    phone.addListener(() {
+      if (phone.text.startsWith('+33')) {
+        setState(() {
+          controller.selectedCountry = controller.items
+              .firstWhere((element) => element.title == 'France');
+        });
+      }
+    });
+    phone.addListener(() {
+      if (phone.text.startsWith('+34')) {
+        setState(() {
+          controller.selectedCountry = controller.items
+              .firstWhere((element) => element.title == 'Spain');
+        });
+      }
+    });
   }
 
   final formKey = GlobalKey<FormState>();
@@ -52,6 +92,12 @@ class _SettingsPageState extends State<SettingsPage> {
   final phone = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final headline1 = Theme.of(context).textTheme.headline1;
+    final headline2 = Theme.of(context).textTheme.headline2;
+    final headline3 = Theme.of(context).textTheme.headline3;
+    final headline4 = Theme.of(context).textTheme.headline4;
+    final headline5 = Theme.of(context).textTheme.headline5;
+    final headline6 = Theme.of(context).textTheme.headline6;
     final colorSurface = Theme.of(context).colorScheme.surface;
     final size = MediaQuery.of(context).size;
     double widthSize = size.width;
@@ -69,20 +115,20 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   '🤓 Setting up your,\n profile',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: headline1,
                 ),
                 SizedBox(height: widthSize * 0.0693),
-                const Text(
+                Text(
                   'Add your profile photo',
-                  style: TextStyle(fontSize: 16, color: Color(0xffC4C4C4)),
+                  style: headline2,
                 ),
               ],
             ),
           ),
+          SizedBox(height: widthSize * 0.08),
           Container(
-            // height: heightSize,
             padding: EdgeInsets.only(
               left: widthSize * 0.064,
               right: widthSize * 0.064,
@@ -122,9 +168,9 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                     ),
                   ),
-                  const Text(
+                  Text(
                     'Display Name',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetTextFormField(
@@ -138,12 +184,16 @@ class _SettingsPageState extends State<SettingsPage> {
                       if (text.length < 5) {
                         return 'The name is too short';
                       }
+                      if (!RegExp(r'^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$')
+                          .hasMatch(text)) {
+                        return 'Full Name is invalid';
+                      }
                     },
                   ),
                   SizedBox(height: widthSize * 0.074),
-                  const Text(
+                  Text(
                     'Phone',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetTextFormField(
@@ -152,16 +202,16 @@ class _SettingsPageState extends State<SettingsPage> {
                     hintText: '+55(85)999553194',
                     validator: (text) {
                       if (!RegExp(
-                              r'^\+\d{2}\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$')
+                              r'^\+\d{1,2}\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$')
                           .hasMatch(text ?? '')) {
                         return 'Enter a valid Phone';
                       }
                     },
                   ),
                   SizedBox(height: widthSize * 0.074),
-                  const Text(
-                    'Cpf',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  Text(
+                    'CPF',
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetTextFormField(
@@ -176,9 +226,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     hintText: '000.000.000-00',
                   ),
                   SizedBox(height: widthSize * 0.074),
-                  const Text(
+                  Text(
                     'Country',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style: headline4,
                   ),
                   SizedBox(height: widthSize * 0.064),
                   WidgetDropDown(
@@ -189,13 +239,14 @@ class _SettingsPageState extends State<SettingsPage> {
                             value: country,
                             child: Row(
                               children: [
-                                Image.network(country.image, height: 20),
-                                const SizedBox(
-                                  width: 20,
+                                Image.network(country.image,
+                                    height: widthSize * 0.0693),
+                                SizedBox(
+                                  width: widthSize * 0.0693,
                                 ),
                                 Text(
                                   country.title,
-                                  style: TextStyle(color: Colors.grey[500]),
+                                  style: headline6,
                                 ),
                               ],
                             ));
@@ -212,15 +263,9 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: EdgeInsets.only(
                 top: widthSize * 0.229, bottom: widthSize * 0.0373),
-            child: const Center(
+            child: Center(
               child: WidgetButton(
-                title: Text(
-                  'Confirm',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                ),
+                title: Text('Confirm', style: headline5),
               ),
             ),
           ),

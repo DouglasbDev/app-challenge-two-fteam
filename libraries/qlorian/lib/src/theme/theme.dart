@@ -12,6 +12,27 @@ final themeLight = ThemeData(
       foregroundColor: Color(0XFF3E3E3F),
       elevation: 0,
     ),
+    textTheme: const TextTheme(
+        headline1: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Color(0xff565656),
+        ),
+        headline2: TextStyle(fontSize: 16, color: Color(0xffC4C4C4)),
+        headline3: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Color(0xffB9B9B9)),
+        headline4: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: Color(0xff6E6E6E)),
+        headline5: TextStyle(
+            fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
+        headline6: TextStyle(
+            fontSize: 14,
+            color: Color(0xff9F9F9F),
+            fontWeight: FontWeight.w500)),
     hintColor: const Color(0xffC0C0C0),
     primaryColor: const Color(0xffFAFAFA),
     backgroundColor: Colors.black,

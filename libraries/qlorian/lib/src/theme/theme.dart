@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 final themeLight = ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      primary: Color(0xff918AE2),
+      surface: const Color(0xffFFFFFF),
+      primary: const Color(0xff918AE2),
       seedColor: Colors.red,
     ),
+    scaffoldBackgroundColor: const Color(0xffFAFAFA),
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffFAFAFA),
       foregroundColor: Color(0XFF3E3E3F),
       elevation: 0,
     ),
@@ -35,4 +37,4 @@ final themeLight = ThemeData(
           ),
           borderRadius: BorderRadius.circular(10),
         ),
-        focusColor: Color(0xffE7E6F8)));
+        focusColor: const Color(0xffE7E6F8)));

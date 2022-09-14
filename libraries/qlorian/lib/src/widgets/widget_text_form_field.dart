@@ -35,12 +35,12 @@ class WidgetTextFormField extends StatelessWidget {
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
-        isDense: true,
-        contentPadding: EdgeInsets.only(
-          left: widthSize * 0.048,
-          top: widthSize * 0.0426,
-          bottom: widthSize * 0.0426,
-        ),
+        // isDense: true,
+        // contentPadding: EdgeInsets.only(
+        //   left: widthSize * 0.048,
+        //   top: widthSize * 0.0426,
+        //   bottom: widthSize * 0.0426,
+        // ),
         prefixIcon: Icon(
           prefix,
           size: widthSize * 0.064,
